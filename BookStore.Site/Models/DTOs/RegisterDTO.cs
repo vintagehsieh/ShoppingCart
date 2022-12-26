@@ -31,5 +31,7 @@ namespace BookStore.Site.Models.DTOs
         public string Name { get; set; }
 
         public string Mobile { get; set; }
+
+        public string ConfirmCode { get; set; }
     }
 }
