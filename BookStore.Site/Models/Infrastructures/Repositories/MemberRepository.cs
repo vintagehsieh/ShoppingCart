@@ -64,8 +64,5 @@ namespace BookStore.Site.Models.Infrastructures.Repositories
             member.ConfirmCode = null;
             db.SaveChanges();
         }
-
-        
-        
     }
 }

@@ -51,5 +51,10 @@ namespace BookStore.Site.Controllers
 
             return View();
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
     }
 }

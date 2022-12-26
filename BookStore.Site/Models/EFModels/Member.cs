@@ -8,7 +8,7 @@ namespace BookStore.Site.Models.EFModels
 
     public partial class Member
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
