@@ -10,6 +10,7 @@ namespace BookStore.Site.Models.DTOs
 {
     public class RegisterDTO
     {
+        public const string SALT = "!@#$$DGTEGYT";
         public string Account { get; set; }
 
         public string Password { get; set; }
@@ -21,8 +22,8 @@ namespace BookStore.Site.Models.DTOs
         {
             get
             {
-                string salt = "!@#$$DGTEGYT";
-                string result = HashUtility.TOSHA256(this.Password, salt);
+                //string salt = "!@#$$DGTEGYT";
+                string result = HashUtility.TOSHA256(this.Password, SALT);
                 return result;
             }
         }

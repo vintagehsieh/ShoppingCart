@@ -13,7 +13,6 @@ namespace BookStore.Site.Models.Infrastructures.Services
         void Create(RegisterDTO dto);
         MemberDTO Load(int memberId);
         void ActiveRegister(int memberId);
-        MemberDTO GetByAccount(string account);
-       
+        MemberDTO GetByAccount(string account);     
     }
 }
