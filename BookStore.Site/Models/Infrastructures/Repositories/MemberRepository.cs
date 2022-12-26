@@ -64,5 +64,10 @@ namespace BookStore.Site.Models.Infrastructures.Repositories
             member.ConfirmCode = null;
             db.SaveChanges();
         }
+
+        public MemberDTO GetByAccount(string account)
+        {
+            return db.Members.SingleOrDefault(x => x.Account == account).ToDTO();
+        }
     }
 }
