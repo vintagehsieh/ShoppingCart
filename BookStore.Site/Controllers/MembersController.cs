@@ -42,5 +42,14 @@ namespace BookStore.Site.Controllers
                 return View(model);
             }
         }
+
+        public ActionResult ActiveRegister(int memberId, string confirmCode)
+        {
+            IMemberRepository repo = new MemberRepository(); ;
+            var service = new MemberService(repo);
+            service.ActiveRegister(memberId, confirmCode);  
+
+            return View();
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace BookStore.Site.Models.Infrastructures.Services
     {
         private readonly IMemberRepository repository;
 
-        public MemberService (IMemberRepository repo)
+        public MemberService(IMemberRepository repo)
         {
             this.repository = repo;
         }
@@ -25,15 +25,23 @@ namespace BookStore.Site.Models.Infrastructures.Services
             {
                 return (false, "帳號已存在");
             }
-    
 
-        #region 建立會員紀錄
+
+            #region 建立會員紀錄
             //建立ConfirmCode
             dto.ConfirmCode = Guid.NewGuid().ToString("N");
             repository.Create(dto);
             #endregion
 
             return (true, null);
+        }
+
+        public void ActiveRegister(int memberId, string confirmCode)
+        {
+            MemberDTO dto = repository.Load(memberId);
+            if (dto == null) return;
+            if (string.Compare(dto.ConfirmCode, confirmCode) != 0) return;
+            repository.ActiveRegister(memberId);
         }
     }
 }
