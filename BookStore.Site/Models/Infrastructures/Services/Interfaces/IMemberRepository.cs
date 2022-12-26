@@ -11,6 +11,8 @@ namespace BookStore.Site.Models.Infrastructures.Services
     {
         bool IsExists(string account);
         void Create(RegisterDTO dto);
+        MemberDTO Load(int memberId);
+        void ActiveRegister(int memberId);
 
     }
 }
