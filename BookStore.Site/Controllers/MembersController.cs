@@ -4,8 +4,10 @@ using BookStore.Site.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace BookStore.Site.Controllers
 {
@@ -52,9 +54,45 @@ namespace BookStore.Site.Controllers
             return View();
         }
 
-        public ActionResult Login()
+        public ActionResult Login(LoginVM model)
         {
-            return View();
+            var service = new MemberService(repository);
+            (bool IsSucess, string ErrorMessage) response = service.Login(model.Account, model.Password);
+            if (response.IsSucess)
+            {
+                //記住登入成功會員
+                var rememberMe = false;
+                string returnUrl = ProcessLogin(model.Account, rememberMe, out HttpCookie cookie);
+                Response.Cookies.Add(cookie);
+                return Redirect(returnUrl);
+            }
+
+            ModelState.AddModelError(string.Empty, response.ErrorMessage);
+            return this.View(model);
+        }
+
+        private string ProcessLogin(string account, bool rememberMe, out HttpCookie cookie)
+        {
+            var member = repository.GetByAccount(account);
+            string roles = string.Empty; //沒用到角色權限，所以存入空白
+
+            FormsAuthenticationTicket ticket =
+               new FormsAuthenticationTicket(
+                   1,          // 版本別, 沒特別用處
+                   account,
+                   DateTime.Now,   // 發行日
+                   DateTime.Now.AddDays(2), // 到期日
+                   rememberMe,     // 是否續存
+                   roles,          // userdata
+                   "/" // cookie位置
+               );
+            // 將它加密
+            string value = FormsAuthentication.Encrypt(ticket);
+            // 存入cookie
+            cookie = new HttpCookie(FormsAuthentication.FormsCookieName, value);
+            // 取得return url
+            string url = FormsAuthentication.GetRedirectUrl(account, true); //第二個引數沒有用處
+            return url;
         }
     }
 }

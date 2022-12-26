@@ -22,7 +22,7 @@ namespace BookStore.Site.Models.DTOs
 
         public string Mobile { get; set; }
 
-        public bool IsConfirmed { get; set; }
+        public bool? IsConfirmed { get; set; }
 
         public string ConfirmCode { get; set; }
     }
