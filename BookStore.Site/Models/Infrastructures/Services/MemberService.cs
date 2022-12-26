@@ -10,7 +10,7 @@ namespace BookStore.Site.Models.Infrastructures.Services
     {
         private readonly IMemberRepository repository;
 
-        public MemberService(IMemberRepository repo)
+        public MemberService (IMemberRepository repo)
         {
             this.repository = repo;
         }
@@ -30,7 +30,10 @@ namespace BookStore.Site.Models.Infrastructures.Services
         #region 建立會員紀錄
             //建立ConfirmCode
             dto.ConfirmCode = Guid.NewGuid().ToString("N");
+            repository.Create(dto);
             #endregion
+
+            return (true, null);
         }
     }
 }

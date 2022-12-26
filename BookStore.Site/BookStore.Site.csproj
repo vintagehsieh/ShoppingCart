@@ -138,7 +138,8 @@
     <Compile Include="Models\EFModels\Member.cs" />
     <Compile Include="Models\Infrastructures\HashUtility.cs" />
     <Compile Include="Models\Infrastructures\Repositories\MemberRepository.cs" />
-    <Compile Include="Models\Infrastructures\Services\IMemberRepository.cs" />
+    <Compile Include="Models\Infrastructures\Services\Interfaces\IMemberRepository.cs" />
+    <Compile Include="Models\Infrastructures\Services\MemberService.cs" />
     <Compile Include="Models\ViewModels\RegisterVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -179,6 +180,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Members\Register.cshtml" />
+    <Content Include="Views\Members\RegisterConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

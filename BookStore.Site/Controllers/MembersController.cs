@@ -33,6 +33,7 @@ namespace BookStore.Site.Controllers
 
             if (response.IsSucess)
             {
+                //建檔成功，轉到confirm page
                 return View("RegisterConfirm");
             }
             else

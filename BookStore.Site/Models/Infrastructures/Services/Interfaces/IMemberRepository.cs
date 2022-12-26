@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Site.Models.Infrastructures.Services
 {
-    internal interface IMemberRepository
+    public interface IMemberRepository
     {
         bool IsExists(string account);
         void Create(RegisterDTO dto);
