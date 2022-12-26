@@ -40,7 +40,7 @@ namespace BookStore.Site.Controllers
             {
                 ModelState.AddModelError(string.Empty, response.ErrorMessage);
                 return View(model);
-;            }
+            }
         }
     }
 }
